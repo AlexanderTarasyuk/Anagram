@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Anagram</string>
+    <string name="task_of_app">an application that reverses all the words of input text
+    Input text that should be reversed</string>
+    <string name="text_to_reverse">input text that should be reversed</string>
+    <string name="edt_hint">Input Text. Only Latin, please</string>
+    <string name="convert_to_anagram">CONVERT TO ANAGRAM</string>
+</resources>

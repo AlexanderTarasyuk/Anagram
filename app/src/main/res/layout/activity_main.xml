@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="42dp"
+        android:layout_marginTop="12dp"
         android:background="@color/colorAccent"
         android:text="@string/task_of_app"
         android:textColor="@color/colorPrimary"
@@ -22,12 +22,11 @@
         android:id="@+id/edt_input_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/task_text"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="115dp"
-        android:digits="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789"
         android:hint="@string/edt_hint"
-        android:inputType=""
         android:textColor="@color/colorPrimaryDark"
         android:textSize="24sp" />
 
@@ -45,10 +44,10 @@
     <TextView
         android:id="@+id/tv_result"
         android:layout_width="match_parent"
-        android:layout_height="25sp"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="236dp"
+        android:layout_below="@id/btn_convert"
         android:textColor="@color/colorAccent"
         android:visibility="visible" />
 

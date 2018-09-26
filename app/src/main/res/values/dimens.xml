@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="task">24sp</dimen>
+    <dimen name="task">14sp</dimen>
 </resources>

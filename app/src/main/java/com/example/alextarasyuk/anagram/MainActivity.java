@@ -1,5 +1,6 @@
 package com.example.alextarasyuk.anagram;
 
+import android.net.Uri;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
@@ -17,35 +18,40 @@ import com.example.alextarasyuk.anagram.util.Constants;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import timber.log.Timber;
 
 public class MainActivity extends AppCompatActivity {
     @BindView(R.id.task_text)
-    TextView mTaskRext;
+    public TextView mTaskRext;
     @BindView(R.id.edt_input_text)
-    EditText mEdtInput;
+    public EditText mEdtInput;
     @BindView(R.id.btn_convert)
-    Button mButtonConvert;
+    public Button mButtonConvert;
     @BindView(R.id.tv_result)
-    TextView mTvResult;
+    public TextView mTvResult;
     private String LOG = this.getClass().getSimpleName();
 
 
-
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        if (savedInstanceState!=null){
 
-            mTvResult.setText(savedInstanceState.getString(Constants.resultTextState));
+        if (savedInstanceState != null) {
+
+            mTvResult.setText(savedInstanceState.getString(Constants.RESULT_TEXT_STATE));
+        }
+        if (BuildConfig.DEBUG) {
+            Timber.plant(new Timber.DebugTree());
         }
 
         mButtonConvert.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
             public void onClick(View v) {
-                Log.d(LOG, "Convert text");
+                Timber.d("Buttom convert is clicked");
                 if (TextUtils.isEmpty(mEdtInput.getText().toString())) {
                     Toast.makeText(getApplicationContext(), "Please, Input text in Latin", Toast.LENGTH_LONG).show();
 
@@ -64,6 +70,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
 
-        outState.putString(Constants.resultTextState, mTvResult.getText().toString());
+        outState.putString(Constants.RESULT_TEXT_STATE, mTvResult.getText().toString());
     }
 }

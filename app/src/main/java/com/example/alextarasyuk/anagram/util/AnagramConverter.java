@@ -1,5 +1,6 @@
 package com.example.alextarasyuk.anagram.util;
 
+import android.arch.lifecycle.LiveData;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 
@@ -12,8 +13,9 @@ public class AnagramConverter {
         for (String string: stringLineToAnagram) {
             stringBuilder.append(convertToAnagram(string));
             stringBuilder.append(" ");
+
         }
-        return stringBuilder.toString();
+        return stringBuilder.toString().trim();
     }
 
 

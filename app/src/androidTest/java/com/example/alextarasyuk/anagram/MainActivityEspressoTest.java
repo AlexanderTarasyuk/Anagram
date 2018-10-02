@@ -84,7 +84,7 @@ public class MainActivityEspressoTest {
                 .check(matches(withText("asdf")));
 
     }
-
+//rotates the screen
     private void rotateScreen() {
         Context context = InstrumentationRegistry.getTargetContext();
         int orientation

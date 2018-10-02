@@ -9,6 +9,8 @@ import android.support.test.InstrumentationRegistry;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
+import com.squareup.spoon.Spoon;
+
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -25,6 +27,7 @@ import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.startsWith;
 import static org.hamcrest.Matchers.not;
+
 
 @RunWith(AndroidJUnit4.class)
 public class MainActivityEspressoTest {
@@ -45,6 +48,9 @@ public class MainActivityEspressoTest {
         onView(withId(R.id.tv_result))
                 .check(matches(withText("Initial text is: " + "asdf" +
                         "\n  Anagram is:  " + "fdsa")));
+        Spoon.screenshot(mainActivityActivityTestRule.getActivity(), "ButtonIsClickedAndResultMustAppear");
+
+
     }
 
     @Test
@@ -62,6 +68,8 @@ public class MainActivityEspressoTest {
                         not(is(mainActivityActivityTestRule.getActivity().
                                 getWindow().getDecorView())))).
                 check(matches(isDisplayed()));
+        Spoon.screenshot(mainActivityActivityTestRule.getActivity(), "ToastMustApeear");
+
     }
 
     @Test
@@ -71,20 +79,38 @@ public class MainActivityEspressoTest {
                 .perform(click());
         onView(withId(R.id.edt_input_text))
                 .check(matches(withText("")));
+
+        Spoon.screenshot(mainActivityActivityTestRule.getActivity(), "ButtonConvertIsClickedAndEditTextIsCleaned");
+
     }
 
     @Test
     public void ensureTextVievStateIsTheSameAfterChangingTheOrientation() {
-        onView(withId(R.id.tv_result))
-                .perform(typeText("asdf"));
+        onView(withId(R.id.edt_input_text))
+                .perform(typeText("asdf")
+                        , closeSoftKeyboard());
+
+        onView(withId(R.id.btn_convert))
+                .perform(click());
 
         rotateScreen();
 
         onView(withId(R.id.tv_result))
-                .check(matches(withText("asdf")));
+                .check(matches(withText("Initial text is: " + "asdf" +
+                        "\n  Anagram is:  " + "fdsa")));
+
+        rotateScreen();
+
+        onView(withId(R.id.tv_result))
+                .check(matches(withText("Initial text is: " + "asdf" +
+                        "\n  Anagram is:  " + "fdsa")));
+
+        Spoon.screenshot(mainActivityActivityTestRule.getActivity(), "CheckTextViewAfterRotation");
+
 
     }
-//rotates the screen
+
+    //rotates the screen
     private void rotateScreen() {
         Context context = InstrumentationRegistry.getTargetContext();
         int orientation
